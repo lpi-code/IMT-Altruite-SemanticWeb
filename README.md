@@ -2,4 +2,4 @@
 
 API for Altruite's Website
 
-Ontology URI : mtx.dev/ontology/fishes
+Ontology URI : https://mtx.dev/ontology/fishes
