@@ -2,20 +2,24 @@ from flask import Blueprint, jsonify, current_app as app
 
 api_bp = Blueprint('api_bp', __name__)
 
-
-# /habitats json
-@api_bp.route('/habitats')
-def get_habitats():
-    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_habitats_subclass_name())
-
-
-# /poissons json
-@api_bp.route('/poissons')
-def get_poisson():
-    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_poissons_subclass_name())
+allRoutes = [
+    '/habitats',
+    '/appats',
+    '/poissons'
+]
 
 
-# /appats
-@api_bp.route('/appats')
-def get_appats():
-    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_appats_subclass_name())
+def create_routes():
+    for route in allRoutes:
+        route_name = route.strip('/')
+        route_function_name = route_name.replace('/', '_')
+
+        def get_route_function(route_name=route_function_name):
+            method_name = 'get_all_{}_subclass_name'.format(route_name)
+            method = getattr(app.config['ONTOLOGY_INSTANCE'], method_name)
+            return jsonify(method())
+
+        api_bp.add_url_rule(route, endpoint=route_function_name, view_func=get_route_function)
+
+
+create_routes()

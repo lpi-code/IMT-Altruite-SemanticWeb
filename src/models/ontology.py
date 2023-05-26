@@ -7,6 +7,11 @@ class Ontology:
         self.g = Graph()
         self.g.parse(ontology_file_path, format='xml')
 
+    def execute_sparql_query(self, query_code):
+        results = self.g.query(query_code)
+        query_result = [str(row[0]).split('#')[1] for row in results]
+        return query_result
+
     def get_all_habitats(self):
         return self.g.query("""
             PREFIX URI: <https://mtx.dev/ontology/fishes#>
