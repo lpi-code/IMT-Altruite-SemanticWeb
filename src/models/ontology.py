@@ -16,7 +16,7 @@ class Ontology:
             }
         """)
 
-    def get_all_poisson(self):
+    def get_all_poissons(self):
         return self.g.query("""
             PREFIX URI: <https://mtx.dev/ontology/fishes#>
             
@@ -26,10 +26,24 @@ class Ontology:
             }
         """)
 
+    def get_all_appats(self):
+        return self.g.query("""
+            PREFIX URI: <https://mtx.dev/ontology/fishes#>
+
+            SELECT ?x
+            WHERE {
+                ?x a URI:Appat .
+            }
+        """)
+
     def get_all_habitats_subclass_name(self):
         query_result = self.get_all_habitats()
         return [str(row[0]).split('#')[1] for row in query_result]
 
-    def get_all_poisson_subclass_name(self):
-        query_result = self.get_all_poisson()
+    def get_all_poissons_subclass_name(self):
+        query_result = self.get_all_poissons()
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_all_appats_subclass_name(self):
+        query_result = self.get_all_appats()
         return [str(row[0]).split('#')[1] for row in query_result]

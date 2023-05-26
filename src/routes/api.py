@@ -8,7 +8,14 @@ api_bp = Blueprint('api_bp', __name__)
 def get_habitats():
     return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_habitats_subclass_name())
 
-# /poisson json
-@api_bp.route('/poisson')
+
+# /poissons json
+@api_bp.route('/poissons')
 def get_poisson():
-    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_poisson_subclass_name())
+    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_poissons_subclass_name())
+
+
+# /appats
+@api_bp.route('/appats')
+def get_appats():
+    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_all_appats_subclass_name())
