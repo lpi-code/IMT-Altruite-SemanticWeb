@@ -19,6 +19,7 @@ print("Flask Initialized")
 def index():
     return render_template('index.html.j2')
 
+
 if __name__ == '__main__':
     app.debug = True
     app.run()

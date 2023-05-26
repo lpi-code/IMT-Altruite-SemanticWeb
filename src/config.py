@@ -2,10 +2,9 @@ import os
 
 SECRET_KEY = os.urandom(32)
 
-# Grabs the folder where the script runs.
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Enable debug mode.
 DEBUG = True
 
-ontology_file_path = "basedir/../FishOntologyMtx.rdf"
+# ontology_file_path = "basedir/../FishOntologyMtx.rdf"
+ontology_file_path = "https://mtx.dev/ontology/fishes"
