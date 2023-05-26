@@ -1,0 +1,880 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/itsmi/ontologies/2023/4/untitled-ontology-3/"
+     xml:base="http://www.semanticweb.org/itsmi/ontologies/2023/4/untitled-ontology-3/"
+     xmlns:ont="http://www.co-ode.org/ontologies/ont.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:fishes="https://mtx.dev/ontology/fishes#">
+    <owl:Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#habite -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#habite">
+        <rdfs:domain rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <rdfs:range rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#pese -->
+
+    <owl:ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#pese">
+        <rdfs:domain rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#esperance -->
+
+    <owl:DatatypeProperty rdf:about="https://mtx.dev/ontology/fishes#esperance">
+        <rdfs:domain rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:comment>esperance en année</rdfs:comment>
+        <rdfs:label>Espérance de vie</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#poids -->
+
+    <owl:DatatypeProperty rdf:about="https://mtx.dev/ontology/fishes#poids">
+        <rdfs:domain rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>poids en kg</rdfs:comment>
+        <rdfs:label>Poids</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#taille -->
+
+    <owl:DatatypeProperty rdf:about="https://mtx.dev/ontology/fishes#taille">
+        <rdfs:domain rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:comment>taille en cm</rdfs:comment>
+        <rdfs:label>Taille</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Etang -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Etang">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Golfe -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Golfe">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Lac -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Lac">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Lourd -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Lourd"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Mer -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Mer">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Moyen -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Moyen"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Ocean -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Ocean">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDEtang -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDEtang">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Etang"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDOcean -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDOcean">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Ocean"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDeGolfe -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDeGolfe">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Golfe"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDeLac -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDeLac">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Lac"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDeMer -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDeMer">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonDeRiviere -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonDeRiviere">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.co-ode.org/ontologies/ont.owl#habite"/>
+                <owl:someValuesFrom rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Riviere"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#PoissonLeger -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#PoissonLeger">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mtx.dev/ontology/fishes#poids"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.25</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Riviere -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Riviere">
+        <rdfs:subClassOf rdf:resource="https://mtx.dev/ontology/fishes#Habitat"/>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Appat -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Appat">
+        <rdfs:label>Appât</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Chair -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Chair">
+        <rdfs:label>Chair</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#ElementAnatomie -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#ElementAnatomie">
+        <rdfs:label>Élement anatomique</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#EsperanceDeVie -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#EsperanceDeVie">
+        <rdfs:label>Espérance de vie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Habitat -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Habitat">
+        <rdfs:label>Habitat</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Poisson -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Poisson">
+        <rdfs:label>Poisson</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Predateur -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Predateur">
+        <rdfs:label>Prédateur</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#RegimeAlimentaire -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#RegimeAlimentaire">
+        <rdfs:label>Régime alimentaire</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Reproduction -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Reproduction">
+        <rdfs:label>Reproduction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Taille -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Taille">
+        <rdfs:label>Taille</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Zone -->
+
+    <owl:Class rdf:about="https://mtx.dev/ontology/fishes#Zone">
+        <rdfs:label>Zone géographique</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Anguille -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Anguille">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer_Mediterranee"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Atlantique -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Atlantique">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Ocean"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Barracuda -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Barracuda">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer_Mediterranee"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Pacifique"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">160</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Carpe -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Carpe">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Etang_de_la_Capelle"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Gardon"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Lac_du_Salagou"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">20</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">80</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Etang_de_la_Capelle -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Etang_de_la_Capelle">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Etang"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Gardon -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Gardon">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Riviere"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Golfe_de_Suez -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Golfe_de_Suez">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Golfe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Lac_du_Salagou -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Lac_du_Salagou">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Lac"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Limande -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Limande">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Golfe_de_Suez"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer_Du_Nord"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">25</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Mer_Du_Nord -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Mer_Du_Nord">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Mer_Mediterranee -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Mer_Mediterranee">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Pacifique -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Pacifique">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Ocean"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Sardine -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Sardine">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Atlantique"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Pacifique"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.02</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Saumon -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Saumon">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Atlantique"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Gardon"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.7</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Thon -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Thon">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Atlantique"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Mer_Mediterranee"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">30</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">600</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Truite -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Truite">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Poisson"/>
+        <ont:habite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Gardon"/>
+        <fishes:esperance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</fishes:esperance>
+        <fishes:poids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4</fishes:poids>
+        <fishes:taille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">30</fishes:taille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Arctique -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Arctique">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Zone"/>
+        <rdfs:label>Arctique</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Artificiel -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Artificiel">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Artificiel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#AutrePoisson -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#AutrePoisson">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Predateur"/>
+        <rdfs:label>Autre poisson</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Blanche -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Blanche">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Chair"/>
+        <rdfs:label>Blanche</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Bouche -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Bouche">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Bouche</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Branchies -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Branchies">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Branchies</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Carnivore -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Carnivore">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#RegimeAlimentaire"/>
+        <rdfs:label>Carnivore</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#CourtTerme -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#CourtTerme">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#EsperanceDeVie"/>
+        <rdfs:label>Court terme</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Cuiller -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Cuiller">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Cuiller</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Ecaille -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Ecaille">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Écaille</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Grande -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Grande">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Taille"/>
+        <rdfs:label>Grande</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Herbivore -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Herbivore">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#RegimeAlimentaire"/>
+        <rdfs:label>Herbivore</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#InsecteAquatique -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#InsecteAquatique">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Insecte aquatique</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Leger -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Leger">
+        <rdfs:label>Léger</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#LeurreSouple -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#LeurreSouple">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Leurre souple</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#LongTerme -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#LongTerme">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#EsperanceDeVie"/>
+        <rdfs:label>Long terme</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Lourd -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Lourd">
+        <rdfs:label>Lourd</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#MammifereMarin -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#MammifereMarin">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Predateur"/>
+        <rdfs:label>Mammifère marin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#MoucheArtificielle -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#MoucheArtificielle">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Mouche artificielle</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Moyen -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Moyen">
+        <rdfs:label>Moyen</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#MoyenTerme -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#MoyenTerme">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#EsperanceDeVie"/>
+        <rdfs:label>Moyen terme</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Moyenne -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Moyenne">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Taille"/>
+        <rdfs:label>Moyenne</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Nageoire -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Nageoire">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Nageoire</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#NageoireCaudale -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#NageoireCaudale">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Nageoire caudale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#NageoireDorsale -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#NageoireDorsale">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Nageoire dorsale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#NageoirePectorale -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#NageoirePectorale">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Nageoire pectorale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#NageoirePelvienne -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#NageoirePelvienne">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Nageoire pelvienne</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Naturel -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Naturel">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Naturel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Oeil -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Oeil">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#ElementAnatomie"/>
+        <rdfs:label>Œil</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#OiseauMarin -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#OiseauMarin">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Predateur"/>
+        <rdfs:label>Oiseau marin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Omnivore -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Omnivore">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#RegimeAlimentaire"/>
+        <rdfs:label>Omnivore</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Ovipare -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Ovipare">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Reproduction"/>
+        <rdfs:label>Ovipare</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Petite -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Petite">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Taille"/>
+        <rdfs:label>Petite</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#PoissonAppat -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#PoissonAppat">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Poisson appât</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Rose -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Rose">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Chair"/>
+        <rdfs:label>Rose</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Rouge -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Rouge">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Chair"/>
+        <rdfs:label>Rouge</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Temperee -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Temperee">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Zone"/>
+        <rdfs:label>Tempérée</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Tropicale -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Tropicale">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Zone"/>
+        <rdfs:label>Tropicale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#VerDeTerre -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#VerDeTerre">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Appat"/>
+        <rdfs:label>Ver de terre</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mtx.dev/ontology/fishes#Vivipare -->
+
+    <owl:NamedIndividual rdf:about="https://mtx.dev/ontology/fishes#Vivipare">
+        <rdf:type rdf:resource="https://mtx.dev/ontology/fishes#Reproduction"/>
+        <rdfs:label>Vivipare</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+
