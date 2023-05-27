@@ -4,7 +4,7 @@ from config import ontology_file_path
 from models.ontology import Ontology
 from routes.api import api_bp
 
-ontology = Ontology(ontology_file_path)
+ontology = Ontology()
 
 app = Flask(__name__)
 app.config['ONTOLOGY_INSTANCE'] = ontology
@@ -12,7 +12,7 @@ app.config.from_object('config')
 app.register_blueprint(api_bp, url_prefix='/api')
 
 
-@app.route('/models/query', methods=['POST'])
+@app.route('/', methods=['POST'])
 def execute_query():
     query_code = request.form['sparqlQuery']
 

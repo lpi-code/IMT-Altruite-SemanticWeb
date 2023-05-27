@@ -1,9 +1,9 @@
-import rdflib
-from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib import Graph
+from src.config import ontology_file_path
 
 
 class Ontology:
-    def __init__(self, ontology_file_path):
+    def __init__(self):
         self.g = Graph()
         self.g.parse(ontology_file_path, format='xml')
 
@@ -13,33 +13,37 @@ class Ontology:
         return query_result
 
     def get_all_habitats(self):
-        return self.g.query("""
-            PREFIX URI: <https://mtx.dev/ontology/fishes#>
-            SELECT ?s
-            WHERE {
-                ?s rdfs:subClassOf <https://mtx.dev/ontology/fishes#Habitat> .
-            }
-        """)
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+        
+            SELECT ?x
+            WHERE {{
+                ?x rdfs:subClassOf URI:Habitat .
+            }}
+        """
+        return self.g.query(query)
 
     def get_all_poissons(self):
-        return self.g.query("""
-            PREFIX URI: <https://mtx.dev/ontology/fishes#>
-            
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
             SELECT ?x
-            WHERE {
+            WHERE {{
                 ?x a URI:Poisson .
-            }
-        """)
+            }}
+        """
+        return self.g.query(query)
 
     def get_all_appats(self):
-        return self.g.query("""
-            PREFIX URI: <https://mtx.dev/ontology/fishes#>
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
 
             SELECT ?x
-            WHERE {
+            WHERE {{
                 ?x a URI:Appat .
-            }
-        """)
+            }}
+        """
+        return self.g.query(query)
 
     def get_all_habitats_subclass_name(self):
         query_result = self.get_all_habitats()

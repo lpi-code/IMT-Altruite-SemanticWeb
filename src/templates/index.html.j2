@@ -61,16 +61,18 @@
     </section>
 
     <section class="query">
-        <h1>Query</h1>
+        <h1>SPARQL Query</h1>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <form action="/models/query" method="post" id="queryForm">
+                    <form action="/" method="post" id="queryForm">
                         <div class="form-group queryArea">
-                            <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="10"></textarea>
+                            <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="10" placeholder="Rédigez une requête SPARQL ici" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submitButton">Envoyer</button>
+                        <button type="button" class="btn btn-secondary" id="sampleButton">Exemple</button>
+                        <button type="reset" class="btn btn-danger" id="resetButton">Réinitialiser</button>
                     </form>
                 </div>
                 <div class="col-6">
@@ -89,29 +91,55 @@
 <div class="background"></div>
 
 <script>
+    let queryContent = document.getElementById('sparqlQuery');
+    let resultContent = document.getElementById('resultContent');
+    let messageContent = document.getElementById('message');
+    resultContent.textContent = 'Effectuez une requête SPARQL pour voir le résultat ici';
+
+    document.getElementById('sampleButton').addEventListener('click', function(event) {
+        queryContent.textContent =
+            `PREFIX URI: <https://mtx.dev/ontology/fishes#>
+
+SELECT ?x
+    WHERE {
+        ?x a URI:Poisson .
+    }`
+    });
+
+    document.getElementById('resetButton').addEventListener('click', function(event) {
+        queryContent.textContent = '';
+        resultContent.textContent = 'Effectuez une requête SPARQL pour voir le résultat ici';
+        messageContent.textContent = '';
+    });
+
     document.getElementById('queryForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Empêche la soumission du formulaire
+        // Empêche la soumission du formulaire
+        event.preventDefault();
 
-        var form = event.target;
-        var formData = new FormData(form);
+        // Récupère les données du formulaire
+        let form = event.target;
+        let formData = new FormData(form);
 
-        var xhr = new XMLHttpRequest();
+        // Envoie les données du formulaire en AJAX
+        let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
+            // Si la requête est terminée
             if (xhr.readyState === XMLHttpRequest.DONE) {
+                // Si la réponse est un succès
                 if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
+                    // Récupère la réponse et les messages
+                    let response = JSON.parse(xhr.responseText);
+
+                    // Si la réponse contient une erreur
                     if (response.error) {
-                        var resultContent = document.getElementById('resultContent');
                         resultContent.textContent = 'Erreur : ' + response.error;
-                        document.getElementById('message').textContent = '';
+                        messageContent.textContent = '';
                     } else if (response.message) {
-                        var resultContent = document.getElementById('resultContent');
                         resultContent.textContent = '';
-                        document.getElementById('message').textContent = response.message;
+                        messageContent.textContent = response.message;
                     } else if (response.result) {
-                        var resultContent = document.getElementById('resultContent');
                         resultContent.textContent = response.result.join('\n');
-                        document.getElementById('message').textContent = '';
+                        messageContent.textContent = '';
                     } else {
                         console.error('Réponse invalide : ' + xhr.responseText);
                     }
@@ -121,6 +149,7 @@
             }
         };
 
+        // Envoie la requête
         xhr.open(form.method, form.action, true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.send(formData);
