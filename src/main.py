@@ -1,6 +1,6 @@
 import importlib
 import subprocess
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from models.ontology import Ontology
 from routes.api import api_bp
 
@@ -39,6 +39,10 @@ def create_app():
         except Exception as e:
             error_message = str(e)
             return jsonify({'error': error_message})
+
+    @app.route('/css/<path:path>')
+    def send_css(path):
+        return send_from_directory('css', path)
 
     @app.route('/')
     def index():
