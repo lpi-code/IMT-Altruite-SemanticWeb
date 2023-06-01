@@ -1,8 +1,7 @@
-from rdflib import Graph
-
 import sys
 sys.path.insert(0, '../src')
 from config import ontology_file_path
+from rdflib import Graph
 
 
 class Ontology:
