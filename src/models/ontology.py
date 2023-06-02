@@ -1,7 +1,8 @@
+from rdflib import Graph
+
 import sys
 sys.path.insert(0, '../src')
 from config import ontology_file_path
-from rdflib import Graph
 
 
 class Ontology:
@@ -46,6 +47,31 @@ class Ontology:
             }}
         """
         return self.g.query(query)
+
+    def get_subclasses_with_instances(self, classe):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+            SELECT ?subclass ?instance
+            WHERE {{
+                ?subclass rdfs:subClassOf URI:{classe} .
+                ?instance a ?subclass .
+            }}
+        """
+        results = self.g.query(query)
+
+        whole_dict = {}
+        for row in results:
+            subclass = row['subclass'].split('#')[-1]
+            instance = row['instance'].split('#')[-1]
+
+            if subclass in whole_dict:
+                whole_dict[subclass].append(instance)
+            else:
+                whole_dict[subclass] = [instance]
+
+        return whole_dict
 
     def get_all_habitats_subclass_name(self):
         query_result = self.get_all_habitats()

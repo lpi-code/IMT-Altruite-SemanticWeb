@@ -31,3 +31,8 @@ def create_routes():
 
 
 create_routes()
+
+
+@api_bp.route('/test')
+def test():
+    return jsonify(app.config['ONTOLOGY_INSTANCE'].get_subclasses_with_instances('Poisson'))
