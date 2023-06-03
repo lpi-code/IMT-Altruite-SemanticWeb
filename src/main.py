@@ -44,6 +44,10 @@ def create_app():
     def send_css(path):
         return send_from_directory('css', path)
 
+    @app.route('/img/<path:path>')
+    def send_logo(path):
+        return send_from_directory('img', path)
+
     @app.route('/')
     def index():
         all_routes = [str(rule) for rule in app.url_map.iter_rules() if str(rule).startswith('/api/')]

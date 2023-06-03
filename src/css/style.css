@@ -81,3 +81,42 @@ nav{
 .authorsTitle{
     margin-right: 10px;
 }
+.headerContainer{
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+@media screen and (max-width: 768px){
+    .authors{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .authors li{
+        margin: 5px 0;
+        width: 30px;
+        height: 30px;
+        font-size: .5em;
+    }
+    .headerContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo{
+        margin: 0;
+    }
+    .authorsTitle{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .authors{
+        display: none;
+    }
+}

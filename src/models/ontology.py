@@ -1,6 +1,7 @@
 from rdflib import Graph
 
 import sys
+
 sys.path.insert(0, '../src')
 from config import ontology_file_path
 
@@ -21,7 +22,7 @@ class Ontology:
         
             SELECT ?x
             WHERE {{
-                ?x rdfs:subClassOf URI:Habitat .
+                ?x rdfs:subClassOf URI:Habitat
             }}
         """
         return self.g.query(query)
@@ -32,7 +33,7 @@ class Ontology:
 
             SELECT ?x
             WHERE {{
-                ?x a URI:Poisson .
+                ?x a URI:Poisson
             }}
         """
         return self.g.query(query)
@@ -43,12 +44,57 @@ class Ontology:
 
             SELECT ?x
             WHERE {{
-                ?x a URI:Appat .
+                ?x a URI:Appat
+            }}
+        """
+        return self.g.query(query)
+
+    def get_all_elements_anatomiques(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:ElementAnatomie
+            }}
+        """
+        return self.g.query(query)
+
+    def get_all_predateurs(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:Predateur
+            }}
+        """
+        return self.g.query(query)
+
+    def get_all_reproductions(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:Reproduction
+            }}
+        """
+        return self.g.query(query)
+
+    def get_all_regimes(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:RegimeAlimentaire
             }}
         """
         return self.g.query(query)
 
     def get_subclasses_with_instances(self, classe):
+        classe = classe.strip("'")
         query = f"""
             PREFIX URI: <{ontology_file_path}#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -59,6 +105,7 @@ class Ontology:
                 ?instance a ?subclass .
             }}
         """
+        print(query)
         results = self.g.query(query)
 
         whole_dict = {}
@@ -83,4 +130,20 @@ class Ontology:
 
     def get_all_appats_subclass_name(self):
         query_result = self.get_all_appats()
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_all_elements_anatomiques_subclass_name(self):
+        query_result = self.get_all_elements_anatomiques()
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_all_predateurs_subclass_name(self):
+        query_result = self.get_all_predateurs()
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_all_reproductions_subclass_name(self):
+        query_result = self.get_all_reproductions()
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_all_regimes_subclass_name(self):
+        query_result = self.get_all_regimes()
         return [str(row[0]).split('#')[1] for row in query_result]
