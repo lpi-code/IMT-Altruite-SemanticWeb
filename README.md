@@ -1,6 +1,6 @@
 # IMT-Altruite-SemanticWeb
 
-![alt text](logo.jpg "Logo")
+![alt text](src/img/logo.jpg "Logo")
 
 API for Altruite's Website
 
