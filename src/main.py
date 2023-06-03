@@ -6,7 +6,7 @@ from routes.api import api_bp
 
 
 def create_app():
-    required_modules = ['flask', 'rdflib', 'os', 'gunicorn']
+    required_modules = ['flask', 'rdflib', 'os']
     for module in required_modules:
         try:
             importlib.import_module(module)
