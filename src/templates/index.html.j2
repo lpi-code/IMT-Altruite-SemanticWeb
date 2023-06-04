@@ -62,7 +62,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             {% for route in routes %}
-                                <li><a class="dropdown-item" target="_blank" data-value="{{ route }}">{{ route }}</a></li>
+                                {% set routeName = route.capitalize().replace('_', ' ') %}
+                                <li><a class="dropdown-item" target="_blank" data-value="{{ route }}">{{ routeName }}</a></li>
                             {% endfor %}
                         </ul>
                         <button type="reset" class="btn btn-danger" id="resetButton">Réinitialiser</button>
