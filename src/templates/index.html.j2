@@ -6,6 +6,9 @@
     <title>L'Altruite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/sparql/sparql.min.js"></script>
     <link rel="icon" type="image/png" href="img/logo.jpg" property="image">
     <meta name="description" content="API pour l'Altruite" property="og:description">
     <meta name="keywords" content="API, Altruite, Poisson, IMT, Semantic Web" property="og:keywords">
@@ -54,7 +57,14 @@
                             <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="10" placeholder="Rédigez une requête SPARQL ici" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitButton">Envoyer</button>
-                        <button type="button" class="btn btn-secondary" id="sampleButton">Exemple</button>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Exemples
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% for route in routes %}
+                                <li><a class="dropdown-item" target="_blank" data-value="{{ route }}">{{ route }}</a></li>
+                            {% endfor %}
+                        </ul>
                         <button type="reset" class="btn btn-danger" id="resetButton">Réinitialiser</button>
                     </form>
                 </div>
@@ -77,25 +87,56 @@
     let queryContent = document.getElementById('sparqlQuery');
     let resultContent = document.getElementById('resultContent');
     let messageContent = document.getElementById('message');
+    let dropdownItems = document.querySelectorAll('.dropdown-item');
+    let editor = null;
 
     resultContent.textContent = 'Effectuez une requête SPARQL pour voir le résultat ici';
 
-    document.getElementById('sampleButton').addEventListener('click', function(event) {
-        queryContent.value =
-            `PREFIX URI: <https://mtx.dev/ontology/fishes#>
-
-SELECT ?x
-    WHERE {
-        ?x a URI:Poisson
-    }`
-
-        document.getElementById('submitButton').click();
-    });
-
     document.getElementById('resetButton').addEventListener('click', function(event) {
-        queryContent.value = '';
+        editor.setValue('');
         resultContent.textContent = 'Effectuez une requête SPARQL pour voir le résultat ici';
         messageContent.textContent = '';
+    });
+
+    dropdownItems.forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            let selectedValue = item.getAttribute('data-value');
+
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        let response = JSON.parse(xhr.responseText);
+
+                        // Vérifier si un éditeur existe déjà
+                        if (editor) {
+                            // Mettre à jour la valeur de l'éditeur existant
+                            editor.setValue(response.query);
+                        } else {
+                            // Créer un nouvel éditeur CodeMirror
+                            editor = CodeMirror.fromTextArea(document.getElementById('sparqlQuery'), {
+                                mode: 'sparql',
+                                lineNumbers: true,
+                                theme: 'default'
+                            });
+                            editor.setValue(response.query);
+                        }
+
+                        // Supprimer l'attribut "required" du textarea
+                        editor.getTextArea().removeAttribute('required');
+
+                        document.getElementById('submitButton').click();
+                    } else {
+                        console.error('Erreur lors de la requête : ' + xhr.status);
+                    }
+                }
+            };
+
+            xhr.open('POST', '/get_query', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.send(JSON.stringify({ route: selectedValue }));
+        });
     });
 
     document.getElementById('queryForm').addEventListener('submit', function(event) {
@@ -105,6 +146,9 @@ SELECT ?x
         // Récupère les données du formulaire
         let form = event.target;
         let formData = new FormData(form);
+
+        let query = editor.getValue();
+        formData.set('sparqlQuery', query);
 
         // Envoie les données du formulaire en AJAX
         let xhr = new XMLHttpRequest();
@@ -132,6 +176,9 @@ SELECT ?x
                 } else {
                     console.error('Erreur lors de la requête : ' + xhr.status);
                 }
+
+                // Réinitialise le formulaire
+                form.reset();
             }
         };
 
@@ -141,5 +188,17 @@ SELECT ?x
         xhr.send(formData);
     });
 </script>
+<script>
+    // Créer un nouvel éditeur CodeMirror si le textarea existe
+    if (document.getElementById('sparqlQuery')) {
+        editor = CodeMirror.fromTextArea(document.getElementById('sparqlQuery'), {
+            mode: 'sparql',
+            lineNumbers: true,
+            theme: 'default',
+        });
+        editor.id = 'sparqlQuery';
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

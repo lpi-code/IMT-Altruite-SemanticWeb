@@ -1,7 +1,9 @@
 import importlib
 import subprocess
+import textwrap
+
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from models.ontology import Ontology
+from models.ontology import *
 from routes.api import api_bp
 
 
@@ -22,6 +24,34 @@ def create_app():
     app.config['ONTOLOGY_INSTANCE'] = ontology
     app.config.from_object('config')
     app.register_blueprint(api_bp, url_prefix='/api')
+
+    @app.route('/get_query', methods=['POST'])
+    def get_query():
+        data = request.get_json()
+        selected_route = data.get('route')
+
+        query_functions = {
+            'habitats': get_all_habitats_query,
+            'poissons': get_all_poissons_query,
+            'appats': get_all_appats_query,
+            'predateurs': get_all_predateurs_query,
+            'reproductions': get_all_reproductions_query,
+            'regimes': get_all_regimes_query,
+            'elements_anatomiques': get_all_elements_anatomiques_query,
+            'poissons_vivipares': get_poissons_vivipares_query,
+            'poissons_ovipares': get_poissons_ovipares_query,
+            'poissons_mer_ocean': get_poissons_mer_ocean_query,
+            'poissons_taille_petite': get_poissons_taille_petite_query,
+            'poissons_vie_longue': get_poissons_vie_longue_query,
+            'poissons_branchies_2_8': get_poissons_branchies_2_8_query
+        }
+
+        query_function = query_functions.get(selected_route)
+        query = query_function() if query_function else None
+
+        query = textwrap.dedent(query).strip()
+
+        return jsonify({'query': query})
 
     @app.route('/', methods=['POST'])
     def execute_query():
