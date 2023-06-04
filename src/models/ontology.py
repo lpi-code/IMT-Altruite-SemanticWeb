@@ -93,6 +93,55 @@ class Ontology:
         """
         return self.g.query(query)
 
+    def get_poissons_vivipares(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:Poisson ;
+                URI:reproduction URI:Vivipare .
+            }}
+        """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_poissons_ovipares(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+
+            SELECT ?x
+            WHERE {{
+                ?x a URI:Poisson ;
+                URI:reproduction URI:Ovipare .
+            }}
+        """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_poissons_mer_ocean(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            SELECT DISTINCT ?x
+            WHERE {{
+                {{
+                    ?x rdf:type URI:Poisson ;
+                          URI:habite ?habitat .
+                    ?habitat rdf:type URI:Mer .
+                }}
+                UNION
+                {{
+                    ?x rdf:type URI:Poisson ;
+                            URI:habite ?habitat .
+                    ?habitat rdf:type URI:Ocean .
+                }}
+            }}
+        """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
+
     def get_subclasses_with_instances(self, classe):
         classe = classe.strip("'")
         query = f"""
@@ -119,6 +168,51 @@ class Ontology:
                 whole_dict[subclass] = [instance]
 
         return whole_dict
+
+    def get_poissons_taille_petite(self):
+        query = f"""
+                PREFIX URI: <{ontology_file_path}#>
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+                SELECT ?x
+                WHERE {{
+                    ?x rdf:type URI:Poisson ;
+                        URI:taille ?taille .
+                    FILTER (xsd:decimal(?taille) < 20)
+                }}
+            """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_poissons_vie_longue(self):
+        query = f"""
+                PREFIX URI: <{ontology_file_path}#>
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+                SELECT ?x
+                WHERE {{
+                    ?x rdf:type URI:Poisson ;
+                        URI:esperance ?esperance .
+                    FILTER (xsd:decimal(?esperance) > 10)
+                }}
+            """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
+
+    def get_poissons_branchies_2_8(self):
+        query = f"""
+            PREFIX URI: <{ontology_file_path}#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            SELECT ?x
+            WHERE {{
+                ?x rdf:type URI:Poisson ;
+                    URI:branchies ?branchies .
+                FILTER (xsd:integer(?branchies) >= 2 && xsd:integer(?branchies) <= 8)
+            }}
+        """
+        query_result = self.g.query(query)
+        return [str(row[0]).split('#')[1] for row in query_result]
 
     def get_all_habitats_subclass_name(self):
         query_result = self.get_all_habitats()

@@ -6,7 +6,7 @@ from routes.api import api_bp
 
 
 def create_app():
-    required_modules = ['flask', 'rdflib', 'os']
+    required_modules = ['flask', 'rdflib']
     for module in required_modules:
         try:
             importlib.import_module(module)
@@ -32,7 +32,7 @@ def create_app():
             print(query_result)
 
             if len(query_result) == 0:
-                return jsonify({'message': 'Aucun résultat trouvé.'})
+                return jsonify({'message': 'Aucun résultat trouvé 😢'})
             else:
                 return jsonify({'result': query_result})
 

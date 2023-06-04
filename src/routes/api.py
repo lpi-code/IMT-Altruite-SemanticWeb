@@ -11,6 +11,12 @@ allRoutes = {
     '/reproductions': 'get_all_reproductions_subclass_name',
     '/regimes': 'get_all_regimes_subclass_name',
     '/elements_anatomiques': 'get_all_elements_anatomiques_subclass_name',
+    '/poissons_vivipares': 'get_poissons_vivipares',
+    '/poissons_ovipares': 'get_poissons_ovipares',
+    '/poissons_mer_ocean': 'get_poissons_mer_ocean',
+    '/poissons_taille_petite': 'get_poissons_taille_petite',
+    '/poissons_vie_longue': 'get_poissons_vie_longue',
+    '/poissons_branchies_2_8': 'get_poissons_branchies_2_8',
 }
 
 
