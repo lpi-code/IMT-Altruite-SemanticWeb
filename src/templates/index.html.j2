@@ -54,7 +54,7 @@
                 <div class="col-6">
                     <form action="/" method="post" id="queryForm">
                         <div class="form-group queryArea">
-                            <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="10" placeholder="Rédigez une requête SPARQL ici" required></textarea>
+                            <textarea class="form-control" id="sparqlQuery" name="sparqlQuery" rows="20" placeholder="Rédigez une requête SPARQL ici" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitButton">Envoyer</button>
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -198,6 +198,8 @@
             theme: 'default',
         });
         editor.id = 'sparqlQuery';
+        editor.getWrapperElement().style.height = '100%';
+        editor.refresh();
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
