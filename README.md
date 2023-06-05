@@ -1,8 +1,10 @@
 # IMT-Altruite-SemanticWeb
 
-![alt text](src/img/logo.jpg "Logo")
+<div style="display: flex; justify-content: center;">
+  <img src="src/img/logo.jpg" alt="Logo" style="max-width: 200px; max-height: 200px;">
+</div>
 
-API for Altruite's Website
+# Fishes API & Ontology
 
 Authors :
 - [Loic](https://github.com/lpi-code)
