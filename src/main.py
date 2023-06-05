@@ -78,10 +78,6 @@ def create_app():
     def send_logo(path):
         return send_from_directory('img', path)
 
-    @app.route('/visualisation')
-    def visualisation():
-        return redirect("https://service.tib.eu/webvowl/#iri=https://mtx.dev/ontology/fishes")
-
     @app.route('/')
     def index():
         all_routes = [str(rule) for rule in app.url_map.iter_rules() if str(rule).startswith('/api/')]
