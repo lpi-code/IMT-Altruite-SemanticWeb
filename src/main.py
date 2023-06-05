@@ -2,7 +2,7 @@ import importlib
 import subprocess
 import textwrap
 
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, redirect
 from models.ontology import *
 from routes.api import api_bp
 
@@ -77,6 +77,10 @@ def create_app():
     @app.route('/img/<path:path>')
     def send_logo(path):
         return send_from_directory('img', path)
+
+    @app.route('/visualisation')
+    def visualisation():
+        return redirect("https://service.tib.eu/webvowl/#iri=https://mtx.dev/ontology/fishes")
 
     @app.route('/')
     def index():
